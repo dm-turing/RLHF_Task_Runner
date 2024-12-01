@@ -6,13 +6,13 @@ import (
 )
 
 var sharedData = 0
-var mtx sync.Mutex
+var mu sync.Mutex
 
 func BenchmarkExplicitLocking(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		mtx.Lock()
+		mu.Lock()
 		sharedData = i
-		mtx.Unlock()
+		mu.Unlock()
 	}
 }
